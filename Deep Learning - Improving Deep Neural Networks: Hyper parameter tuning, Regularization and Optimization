@@ -1,0 +1,82 @@
+- Training your neural network requires specifying an initial value of the weights
+
+- A well chosen initialization can:
+
+   - Speed up the convergence of gradient descent
+   - Increase the odds of gradient descent converging to a lower training (and generalization) error
+
+- initializing all the weights to zero results in the network failing to break symmetry. This means that every neuron 
+  in each layer will learn the same thing, and you might as well be training a neural network with  n[l]=1n[l]=1  for every layer, 
+  and the network is no more powerful than a linear classifier such as logistic regression.
+  
+- Different initializations lead to different results
+    - Random initialization is used to break symmetry and make sure different hidden units can learn different things
+    - Don't intialize to values that are too large
+    - He initialization works well for networks with ReLU activations
+    
+- Traditional Machine Learning application:
+      60% - Training set
+      20% - Dev/Cross validation set
+      20% - Test set
+
+- Modern ML application:
+      98% - Training set
+      1% - Dev test
+      1% - Test set
+      
+- Make sure that Dev and Test set comes from a same distribution
+
+- Not having a test set is OK (only dev test)
+
+- High bias (under fit to the data)
+
+- High Variance (over fit to the data)
+
+- Over fitting(high variance) the training set -> if you are doing very well on the training set, but not doing well with the dev test
+
+- a model without regularization gives you a better accuracy on the training set but nor necessarily on the test set.
+
+- overfitting can be a serious problem, if the training dataset is not big enough. Sure it does well on the training set,
+  but the learned network doesn't generalize to new examples that it has never seen!
+  
+- Techniques are useful for reducing variance (reducing overfitting):
+
+   - Data augmentation
+   - Dropout
+   - L2 regularisation
+
+DROP OUT TECHNIQUE:
+------------------
+
+- Dropout is a regularization technique
+
+- You only use dropout during training. Don't use dropout (randomly eliminate nodes) during test time.
+
+- Apply dropout both during forward and backward propagation
+
+- During training time, divide each dropout layer by keep_prob to keep the same expected value for the activations.
+  For example, if keep_prob is 0.5, then we will on average shut down half the nodes, so the output will be scaled by 0.5
+  since only the remaining half are contributing to the solution. Dividing by 0.5 is equivalent to multiplying by 2. 
+  Hence, the output now has the same expected value. You can check that this works even when keep_prob is other values than 0.5.
+  
+L2 regularization:
+------------------
+
+L2-regularization relies on the assumption that a model with small weights is simpler than a model with large weights. 
+Thus, by penalizing the square values of the weights in the cost function you drive all the weights to smaller values. 
+It becomes too costly for the cost to have large weights! This leads to a smoother model in which the output changes more
+slowly as the input changes.
+
+What is weight decay?
+---------------------
+
+A regularization technique (such as L2 regularization) that results in gradient descent shrinking the weights on every iteration.
+
+
+when you increase the regularization hyperparameter lambda, Weights are pushed toward becoming smaller (closer to 0)
+
+   
+
+
+
+
